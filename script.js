@@ -10,7 +10,6 @@ var charNumber = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 var charSpecial = ["#", "$", "%", "&", "*", "+", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "^"];
 
 // declaring variables of user responses into Global memory
-var userLength;
 var userLower;
 var userUpper;
 var userNumeric;
@@ -18,10 +17,17 @@ var userSpecial;
 
 //function that will write the password based on user responses
 function writePassword() {
+
   // determines password length based on user input from prompt
   var userLength = parseInt(prompt("Choose password length (between 8-128 characters)."));
   // if/else statement: if user selects appropriate length for password, the following code block is executed; else, it alerts to try again
   if (userLength >= '8' && userLength <= '128') {
+
+    //clears text if user enters invalid response
+    var clearText = document.querySelector("#password");
+    clearText.value = " ";
+    generateBtn.addEventListener("click", clearText);
+
     //main code block for if statement; executed when condition for password length is truthy
     //inserts user's input for userLength variable in alert
     alert("Your password will be " + userLength + " characters long.");
@@ -48,11 +54,11 @@ function writePassword() {
       userChoice.push(charSpecial)
       // else if statement: if no character types are selected, the user is alerted to try again and select at least one character type
     } else if (userLower === false && userUpper === false && userNumeric === false && userSpecial === false) {
-      alert("You must pick at least one character type to generate a password. Press 'Generate Password' to try again.")
+      return alert("You must pick at least one character type to generate a password. Press 'Generate Password' to try again.")
     }
-    // if password length did not meet the condition for 'if' on line 24, the following code block is executed
+    // if password length did not meet the condition for 'if', the following code block is executed
   } else {
-    alert("You must select a password between 8-128 characters. Press 'Generate Password' to try again.");
+    return alert("You must select a password between 8-128 characters. Press 'Generate Password' to try again.");
   }
 
   //declares variable in function memory and stores value as the userChoice array's elements concatenated
@@ -87,7 +93,6 @@ function writePassword() {
   //writes the password in the tag 'textarea' with the id of 'password'
   passwordText.value = password;
 }
-
 
 
 // Add event listener to generate button
