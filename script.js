@@ -1,6 +1,5 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
-
 // Write password to the #password input
 
 // declaring variables for arrays of possible characters into Global memory
@@ -23,7 +22,7 @@ function writePassword() {
   // if/else statement: if user selects appropriate length for password, the following code block is executed; else, it alerts to try again
   if (userLength >= '8' && userLength <= '128') {
 
-    //clears text if user enters invalid response
+    //prevents 'undefined' from printing in textarea
     var clearText = document.querySelector("#password");
     clearText.value = " ";
     generateBtn.addEventListener("click", clearText);
@@ -93,7 +92,6 @@ function writePassword() {
   //writes the password in the tag 'textarea' with the id of 'password'
   passwordText.value = password;
 }
-
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
